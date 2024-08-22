@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... -->
+    <title>Seller Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="header-container">
+            <img src="images/car.webp" alt="Company Logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="register.html">Seller Registration</a></li>
+                    <li><a href="login.html">Seller Login</a></li>
+                    <li><a href="search.html">Search Cars</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section>
+        <h2>Seller Login</h2>
+        <form id="loginForm">
+            <label for="loginUsername">Username:</label>
+            <input type="text" id="loginUsername" name="loginUsername" required>
+
+            <label for="loginPassword">Password:</label>
+            <input type="password" id="loginPassword" name="loginPassword" required>
+
+            <button type="submit" class="btn">Login</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Online Car Sale. All rights reserved.</p>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+    <script>
+        // Login Form Validation
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form submission
+
+            // For demonstration, assume any non-empty credentials are valid
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            if (username === '' || password === '') {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            // Redirect to Add Car page after successful login
+            window.location.href = 'add-car.html';
+        });
+    </script>
+</body>
+</html>

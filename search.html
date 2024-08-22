@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... -->
+    <title>Search Cars</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="header-container">
+            <img src="images/car.webp" alt="Company Logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="register.html">Seller Registration</a></li>
+                    <li><a href="login.html">Seller Login</a></li>
+                    <li><a href="search.html">Search Cars</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section>
+        <h2>Search for Cars</h2>
+        <form id="searchForm">
+            <label for="searchModel">Model:</label>
+            <input type="text" id="searchModel" name="searchModel">
+
+            <label for="searchLocation">Location:</label>
+            <input type="text" id="searchLocation" name="searchLocation">
+
+            <button type="submit" class="btn">Search</button>
+        </form>
+
+        <!-- Results Section -->
+        <div id="searchResults">
+            <!-- Search results will be displayed here -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Online Car Sale. All rights reserved.</p>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+    <script>
+        // Search Functionality (Mocked for demonstration)
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const model = document.getElementById('searchModel').value.trim().toLowerCase();
+            const location = document.getElementById('searchLocation').value.trim().toLowerCase();
+
+            // Mocked car data
+            const cars = [
+                { make: 'Toyota', model: 'Corolla', year: 2018, mileage: 50000, location: 'New York', price: 15000 },
+                { make: 'Honda', model: 'Civic', year: 2020, mileage: 20000, location: 'Los Angeles', price: 20000 },
+                // ... more cars
+            ];
+
+            // Filter cars based on search criteria
+            const filteredCars = cars.filter(car => {
+                const matchesModel = model === '' || car.model.toLowerCase().includes(model);
+                const matchesLocation = location === '' || car.location.toLowerCase().includes(location);
+                return matchesModel && matchesLocation;
+            });
+
+            // Display Results
+            const resultsDiv = document.getElementById('searchResults');
+            resultsDiv.innerHTML = ''; // Clear previous results
+
+            if (filteredCars.length === 0) {
+                resultsDiv.innerHTML = '<p>No cars found matching your criteria.</p>';
+            } else {
+                filteredCars.forEach(car => {
+                    const carDiv = document.createElement('div');
+                    carDiv.classList.add('car-item');
+                    carDiv.innerHTML = `
+                        <h3>${car.make} ${car.model} (${car.year})</h3>
+                        <p>Mileage: ${car.mileage} km</p>
+                        <p>Location: ${car.location}</p>
+                        <p>Price: $${car.price}</p>
+                    `;
+                    resultsDiv.appendChild(carDiv);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

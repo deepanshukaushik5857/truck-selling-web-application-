@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Registration</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <img src="images/car.webp" alt="Company Logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="register.html">Seller Registration</a></li>
+                    <li><a href="login.html">Seller Login</a></li>
+                    <li><a href="search.html">Search Cars</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Seller Registration Form -->
+    <section>
+        <h2>Seller Registration</h2>
+        <form id="registrationForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" required></textarea>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required pattern="^\d{10}$" placeholder="Enter 10-digit phone number">
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit" class="btn">Register</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Online Car Sale. All rights reserved.</p>
+    </footer>
+
+
+    <script src="js/scripts.js"></script>
+    <script>
+        // Registration Form Validation
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form submission
+
+            // Fetch form values
+            const email = document.getElementById('email').value.trim();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            // Username Validation
+            const usernameRegex = /^[A-Za-z]+$/;
+            if (username.toLowerCase() === email.toLowerCase()) {
+                alert('Username should not be the same as Email.');
+                return;
+            }
+            if (!usernameRegex.test(username)) {
+                alert('Username should contain only alphabets.');
+                return;
+            }
+
+            // Password Validation
+            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[?$#@])[A-Za-z\d?$#@]{6,10}$/;
+            if (!passwordRegex.test(password)) {
+                alert('Password must be 6-10 characters long and include alphabets, numbers, and at least one special character (?, $, #, @).');
+                return;
+            }
+
+            // If all validations pass
+            alert('Registration successful!');
+            // Here, you can proceed to submit the form data to the server or perform other actions.
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... -->
+    <title>Add Car</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="header-container">
+            <img src="images/car.webp" alt="Company Logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="register.html">Seller Registration</a></li>
+                    <li><a href="login.html">Seller Login</a></li>
+                    <li><a href="search.html">Search Cars</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section>
+        <h2>Add New Car</h2>
+        <form id="addCarForm">
+            <label for="make">Make:</label>
+            <input type="text" id="make" name="make" required>
+
+            <label for="model">Model:</label>
+            <input type="text" id="model" name="model" required>
+
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" required min="1886" max="2024">
+
+            <label for="mileage">Mileage (km):</label>
+            <input type="number" id="mileage" name="mileage" required min="0">
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+
+            <label for="price">Price ($):</label>
+            <input type="number" id="price" name="price" required min="0">
+
+            <button type="submit" class="btn">Add Car</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Online Car Sale. All rights reserved.</p>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+    <script>
+        // Add Car Form Validation
+        document.getElementById('addCarForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form submission
+
+            // Check if all fields are filled
+            const fields = ['make', 'model', 'year', 'mileage', 'location', 'price'];
+            for (let field of fields) {
+                const value = document.getElementById(field).value.trim();
+                if (value === '') {
+                    alert('Please fill in all fields.');
+                    return;
+                }
+            }
+
+            alert('Car added successfully!');
+            // Here, you can proceed to submit the form data to the server or perform other actions.
+        });
+    </script>
+</body>
+</html>
